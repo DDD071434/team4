@@ -60,8 +60,8 @@ public class ToryMain extends JFrame {
 		right.setLayout(null);
 		
 		JButton btnNewButton = new JButton("");
-		URL btn = classLoader.getResource("images/btn_img/cancelBtnImage.png");
-		URL btnhide = classLoader.getResource("images/btn_img/cancelPushBtnImage.png");
+		URL btn = classLoader.getResource("images/btn_img/miniGameCloseBtn.png");
+		URL btnhide = classLoader.getResource("images/btn_img/miniGameClosePushBtn.png");
 		btnNewButton.setIcon(new ImageIcon(btn));
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setPressedIcon(new ImageIcon(btnhide));
@@ -74,8 +74,8 @@ public class ToryMain extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(320, 10, 138, 36);
-		left.add(btnNewButton);
+		btnNewButton.setBounds(358, 10, 100, 45);
+		right.add(btnNewButton);
 		getContentPane().add(right);
 		right.setLayout(null);
 		
