@@ -18,6 +18,7 @@ public class GameControllerImpl implements GameController {
 		this.mainFrame = mainFrame;
 	}
 
+	private int day;
 	private int minutes = 0;
 	private TimerTask timerTask;
 	private Timer currentTime = new Timer();
@@ -27,7 +28,7 @@ public class GameControllerImpl implements GameController {
 
 			@Override
 			public void run() {
-				if (minutes == 1440) {
+				if (minutes == 1439) {
 					minutes = 0;
 					updateDate();
 					updateTime(minutes);
@@ -55,8 +56,7 @@ public class GameControllerImpl implements GameController {
 
 	private void updateDate() {
 
-		int day = 0;
-
+		day = mainFrame.getUserInfo().getDate();
 		day++;
 		mainFrame.getDatelbl().setText(String.format("%02d", day) + "일차");
 	}
