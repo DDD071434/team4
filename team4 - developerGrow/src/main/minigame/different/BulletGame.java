@@ -99,66 +99,51 @@ class MiniGame extends JDialog {
 		add(lblScore);
 		
 		create(30);
-		createT(30, 10000);
-		createT(30, 20000);
-		move(gameDialog, subFrame);
-		mouse();
 		
+		mouse(gameDialog, subFrame);
 		
 		setBounds(400, 200, x, y);
 		setVisible(true);
 	}
 	
-	public void move(GameDialog gameDialog, SubFrame subFrame) {
-		Timer timer=new Timer();
-		TimerTask task=new TimerTask(){
-		    @Override
-		    public void run() {
-				if(life){ // 수행
-					if (bul.size() >= time && lbl.size() >= time){
-						pt = MouseInfo.getPointerInfo();
-						try {
-							for (int i = 0; i < bul.size(); i++) {
-								bul.get(i).setX(bul.get(i).getX() + bul.get(i).getMoveX());
-								bul.get(i).setY(bul.get(i).getY() + bul.get(i).getMoveY());
-								
-								if (bul.get(i).getX() <= 0 || bul.get(i).getX() >= x || bul.get(i).getY() <= 0 || bul.get(i).getY() >= y) {
-									value(bul.get(i));
-								}
-								lbl.get(i).setBounds(bul.get(i).getX(), bul.get(i).getY(), size, size);
-							}
-						} catch (IndexOutOfBoundsException e) {
-						}
-					}
-
-					if (0 <= pt.getLocation().x - 400 && pt.getLocation().x - 400 < x
-							&& 0 <= pt.getLocation().y - 200 && pt.getLocation().y - 200 < y) {
-						score += 1;
-					} else {
-						score -= 3;
-						if (score < 0) {
-							score = 0;
-						}
-					}
-					lblScore.setText(String.valueOf(score));
-				} else {
-					timer.cancel(); // 타이머 종료
-					dispose();
-					gameDialog.setScore(score);
-					new BulletScoreDialog(score);
-					subFrame.dispose();
+	public void move() {
+		pt = MouseInfo.getPointerInfo();
+			for (int i = 0; i < bul.size(); i++) {
+				bul.get(i).setX(bul.get(i).getX() + bul.get(i).getMoveX());
+				bul.get(i).setY(bul.get(i).getY() + bul.get(i).getMoveY());
+				
+				if (bul.get(i).getX() <= 0 || bul.get(i).getX() >= x || bul.get(i).getY() <= 0 || bul.get(i).getY() >= y) {
+					value(bul.get(i));
 				}
-		    }
-		};
-		timer.schedule(task, 0, 17); // 실행 Task, 1초뒤 실행, 반복
+				lbl.get(i).setBounds(bul.get(i).getX(), bul.get(i).getY(), size, size);
+			}
+
+		if (0 <= pt.getLocation().x - 400 && pt.getLocation().x - 400 < x
+				&& 0 <= pt.getLocation().y - 200 && pt.getLocation().y - 200 < y) {
+			score += 1;
+		} else {
+			score -= 3;
+			if (score < 0) {
+				score = 0;
+			}
+		}
+		lblScore.setText(String.valueOf(score));
 	}
 	
-	public void mouse() {
+	public void mouse(GameDialog gameDialog, SubFrame subFrame) {
 		Timer timer=new Timer();
 		TimerTask task=new TimerTask(){
 			@Override
 			public void run() {
 				if(life){ // 수행
+					if (time % 2 == 0 && time > 0) {
+						move();
+					}
+					if(time % 640 == 0 && time > 0) {
+						create(20);
+					} else if (time % 1280 == 0 && time > 0) {
+						create(40);
+					}
 					pt = MouseInfo.getPointerInfo();
 					for (int i = 0; i < bul.size(); i++) {
 						if (bul.get(i).getX() <= pt.getLocation().x - 400 && pt.getLocation().x - 400 < bul.get(i).getX() + size
@@ -166,27 +151,17 @@ class MiniGame extends JDialog {
 							life = false;
 						}
 					}
+					time++;
 				} else {
 					timer.cancel(); // 타이머 종료
+					dispose();
+					gameDialog.setScore(score);
+					new BulletScoreDialog(score);
+					subFrame.dispose();
 				}
 			}
 		};
-		timer.schedule(task, 0, 1); // 실행 Task, 1초뒤 실행, 반복
-	}
-	
-	public void createT(int c, int time) {
-		Timer timer=new Timer();
-		TimerTask task=new TimerTask(){
-			@Override
-			public void run() {
-				if(life){ // 수행
-					create(c);
-				} else {
-					timer.cancel(); // 타이머 종료
-				}
-			}
-		};
-		timer.schedule(task, time, time); // 실행 Task, 1초뒤 실행, 반복
+		timer.schedule(task, 0, 15); // 실행 Task, 1초뒤 실행, 반복
 	}
 	
 	public void create(int a) {
@@ -199,7 +174,6 @@ class MiniGame extends JDialog {
 			lbl.get(bul.size() - 1).setOpaque(true); 
 			add(lbl.get(bul.size() - 1));
 		}
-		time += a;
 	}
 	
 	public void value(Bullet bullet) {
