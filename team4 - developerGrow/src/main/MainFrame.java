@@ -686,4 +686,6 @@ public class MainFrame extends JFrame {
 	public void setProjectTime(int projectTime) {
 		this.projectTime = projectTime;
 	}
+	
+	
 }

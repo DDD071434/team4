@@ -175,7 +175,7 @@ public class GameControllerImpl implements GameController {
 	}
 
 	private void applyProject() {
-		ProjectEventImpl projectEventImpl = new ProjectEventImpl(mainFrame);
+		ProjectEventImpl projectEventImpl = mainFrame.getProjectEventImpl();
 		int searchProject = projectEventImpl.searchNowProject(mainFrame.getUserProjectList());
 		if (searchProject != -1) {
 			int index = mainFrame.getUserProjectList().get(searchProject).getProjectId() - 1;
@@ -183,6 +183,7 @@ public class GameControllerImpl implements GameController {
 			int projectHour = mainFrame.getUserProjectList().get(searchProject).getLastHour();
 			int projcetMin = mainFrame.getUserProjectList().get(searchProject).getLastMin();
 			int time = mainFrame.getProjectList().get(index).getTime();
+			mainFrame.setProjectTime(time);
 			mainFrame.getNowProjectlbl().setText(projectName);
 			mainFrame.getProjectHour().setText(String.valueOf(projectHour));
 			mainFrame.getProjectMinute().setText(String.valueOf(projcetMin));
