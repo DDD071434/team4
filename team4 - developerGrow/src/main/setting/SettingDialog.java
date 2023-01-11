@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import login.AccountDelete;
 import login.LoginFrame;
 import main.MainFrame;
+import manual.Manual1;
 
 public class SettingDialog extends JDialog {
 
@@ -56,6 +57,12 @@ public class SettingDialog extends JDialog {
 		resetbtn.setBounds(517, 246, 152, 45);
 		resetbtn.setIcon(convertToIcon(getClass(), "images/btn_setting/reset.png", 165, 45));
 		resetbtn.setPressedIcon(convertToIcon(getClass(), "images/btn_setting/resetPush.png", 165, 45));
+		resetbtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		contentPane.add(resetbtn);
 		resetbtn.setOpaque(false);
 		resetbtn.setBorderPainted(false);
