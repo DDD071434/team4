@@ -59,7 +59,7 @@ public class ProjectEventImpl implements ProjectEvent {
 		mainFrame.getProjectMinute().setText(String.format("%02d", minutes));
 		if (rate >= 100.0) {
 			mainFrame.getNowRatinglbl().setText("완료");
-			projectTimer.cancel();
+			projcetTask.cancel();
 		} else {
 			mainFrame.getNowRatinglbl().setText(String.format("%.02f", rate));
 		}
