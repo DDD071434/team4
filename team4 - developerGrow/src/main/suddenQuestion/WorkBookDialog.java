@@ -19,11 +19,12 @@ import javax.swing.SwingConstants;
 
 public class WorkBookDialog extends JDialog {
 	
-	public static void main(String[] args) {
-		new WorkBookDialog(3, 100, 100).showGUI();
-	}
+	private MainFrame mainFrame;
 	
-	public WorkBookDialog (int num, int x, int y) {
+	public WorkBookDialog (int num, MainFrame mainFrame, int x, int y) {
+		
+		this.mainFrame = mainFrame;
+		
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		setModal(true);
@@ -89,11 +90,15 @@ public class WorkBookDialog extends JDialog {
 		btn_.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainFrame.getGameControllerImpl().timeController();
+				mainFrame.getGameControllerImpl().runProjectTime();
 				dispose();
 			}
 		});
 	}
 	public void showGUI() {
+		mainFrame.getGameControllerImpl().getTimerTask().cancel();
+		mainFrame.getGameControllerImpl().stopProjectTime();
 		setVisible(true);
 	}
 }

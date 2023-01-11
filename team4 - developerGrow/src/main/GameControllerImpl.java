@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,25 +10,30 @@ import database.controllDB.UpdateDB;
 import database.dblist.Rank;
 import database.dblist.UserInfo;
 import main.project.ProjectEventImpl;
+import main.suddenQuestion.WorkBookDialog;
 
 public class GameControllerImpl implements GameController {
 
 	private MainFrame mainFrame;
-	
+
 	public GameControllerImpl(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
+		System.out.println(randomMin1);
+		System.out.println(randomMin2);
 	}
 
 	private int day;
 	private int minutes = 0;
 	private TimerTask timerTask;
 	private Timer currentTime = new Timer();
+
 	@Override
 	public void timeController() {
 		timerTask = new TimerTask() {
 
 			@Override
 			public void run() {
+
 				if (minutes == 1439) {
 					minutes = 0;
 					updateDate();
@@ -35,6 +41,12 @@ public class GameControllerImpl implements GameController {
 				} else {
 					minutes++;
 					updateTime(minutes);
+				}
+
+				if (minutes == randomMin1) {
+					showrandomQustion();
+				} else if (minutes == randomMin2) {
+					showrandomQustion();
 				}
 
 				if (((minutes % 60) % 10) == 0) {
@@ -45,7 +57,7 @@ public class GameControllerImpl implements GameController {
 				checkProject();
 			}
 		};
-		currentTime.scheduleAtFixedRate(timerTask, 250, 250);
+		currentTime.scheduleAtFixedRate(timerTask, 80, 80);
 	}
 
 	private void updateTime(int minutes) {
@@ -58,26 +70,28 @@ public class GameControllerImpl implements GameController {
 
 		day = mainFrame.getUserInfo().getDate();
 		day++;
+		randomMin1 = random.nextInt(1339) + 1;
+		randomMin2 = random.nextInt((1339 - randomMin1)) + randomMin1 + 1;
+
 		mainFrame.getDatelbl().setText(String.format("%02d", day) + "일차");
 	}
-	
+
 	@Override
 	public void stopProjectTime() {
-		
+
 		if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
 			mainFrame.getProjectEventImpl().getProjcetTask().cancel();
 		}
 	}
-	
+
 	@Override
 	public void runProjectTime() {
-		if (mainFrame.getNowRatinglbl().equals("완료!")) {
+		if (mainFrame.getNowRatinglbl().getText().equals("완료!")) {
 			return;
 		}
-		
+
 		if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
-			mainFrame.getProjectEventImpl().projectTimeControll(
-					mainFrame.getProjectTime());
+			mainFrame.getProjectEventImpl().projectTimeControll(mainFrame.getProjectTime());
 		}
 	}
 
@@ -112,9 +126,9 @@ public class GameControllerImpl implements GameController {
 
 		String userNickName = mainFrame.getUserList().get(0).getUserNickname();
 		mainFrame.setUserRankList(SelectDB.selectRank());
-		
+
 		System.out.println(SelectDB.searchUserRank(userId));
-		
+
 		if (!SelectDB.searchUserRank(userId)) {
 			InsertDB.insertUserRank(userId, infoId, scoreCalculator(), userNickName);
 		}
@@ -221,9 +235,7 @@ public class GameControllerImpl implements GameController {
 
 		Rank userRank = new Rank(mainFrame.getUserList().get(0).getUserNickname(), scoreCalculator(),
 				mainFrame.getUserInfo().getInfoId(), mainFrame.getUserInfo().getUserId());
-		
-		
-		
+
 		UpdateDB.updateRanking(userRank);
 		System.out.println(userRank);
 	}
@@ -252,6 +264,17 @@ public class GameControllerImpl implements GameController {
 		} else {
 			mainFrame.getExpbar().setValue(input);
 		}
+	}
+
+	private Random random = new Random();
+	private int randomMin1 = random.nextInt(1339) + 1;
+	private int randomMin2 = random.nextInt((1339 - randomMin1)) + randomMin1 + 1;
+	
+	public void showrandomQustion() {
+		
+		int index = random.nextInt(16) + 1;
+		WorkBookDialog workBookDialog = new WorkBookDialog(index, mainFrame, mainFrame.getX(), mainFrame.getY());
+		workBookDialog.showGUI();
 	}
 
 	public Timer getCurrentTime() {

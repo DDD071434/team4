@@ -26,8 +26,11 @@ public class RankingDialog extends JDialog {
 
 	private JPanel contentPane;
 	private RankEventImpl rankEventImpl;
+	private MainFrame mainFrame;
 
 	public RankingDialog(int x, int y, MainFrame mainFrame) {
+		
+		this.mainFrame = mainFrame;
 		
 		rankEventImpl = new RankEventImpl(mainFrame);
 		
@@ -99,6 +102,8 @@ public class RankingDialog extends JDialog {
 	}
 
 	public void showGUI() {
+		mainFrame.getGameControllerImpl().getTimerTask().cancel();
+		mainFrame.getGameControllerImpl().stopProjectTime();
 		setVisible(true);
 	}
 	

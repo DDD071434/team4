@@ -332,8 +332,8 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				RankingDialog rankingFrame = new RankingDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
-				gameControllerImpl.getTimerTask().cancel();
-				gameControllerImpl.stopProjectTime();
+//				gameControllerImpl.getTimerTask().cancel();
+//				gameControllerImpl.stopProjectTime();
 				
 				rankingFrame.showGUI();
 			}
