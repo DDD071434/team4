@@ -29,7 +29,8 @@ public class Hide extends JFrame {
 		URL clickImg = classLoader.getResource("images/dif_img/check.png");
 		URL hiding = classLoader.getResource("images/dif_img/1234.PNG");
 		
-		center.setBounds(10, 36, 672, 915);
+		center.setBounds(0, 0, 694, 951);
+		center.setBackground(Color.white);
 		CustomMouseAdapter cma = new CustomMouseAdapter();
 		center.addMouseListener(cma);
 		getContentPane().setLayout(null);
@@ -42,12 +43,12 @@ public class Hide extends JFrame {
 
 		JLabel leftimg = new JLabel("");
 		leftimg.setIcon(new ImageIcon(hiding));
-		leftimg.setBounds(29, 22, 631, 883);
+		leftimg.setBounds(28, -24, 611, 951);
 		center.add(leftimg);
 		
 		JButton btnNewButton = new JButton();
-		URL btn = classLoader.getResource("images/btn_img/cancelBtnImage.png");
-		URL btnhide = classLoader.getResource("images/btn_img/cancelPushBtnImage.png");
+		URL btn = classLoader.getResource("images/btn_img/miniGameCloseBtn.png");
+		URL btnhide = classLoader.getResource("images/btn_img/miniGameClosePushBtn.png");
 		btnNewButton.setIcon(new ImageIcon(btn));
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setPressedIcon(new ImageIcon(btnhide));
@@ -58,14 +59,14 @@ public class Hide extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(227, 10, 177, 24);
-		getContentPane().add(btnNewButton);
+		btnNewButton.setBounds(537, 900, 100, 45);
+		center.add(btnNewButton);
 		setBounds(500, 0, 700, 1000);
 		setResizable(false);
 		setVisible(true);
 
 		getContentPane().add(center);
-		setBounds(500, 0, 700, 1000);
+		setBounds(500, 0, 700, 980);
 		setResizable(false);
 		setVisible(true);
 	}
