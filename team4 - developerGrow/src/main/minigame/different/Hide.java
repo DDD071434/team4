@@ -6,6 +6,8 @@ import java.net.URL;
 
 import javax.swing.*;
 
+import main.MainFrame;
+
 
 public class Hide extends JFrame {
 
@@ -17,10 +19,12 @@ public class Hide extends JFrame {
 	static int[] imageY = { 408, 350, 143, 340, 405, 350, 520 };
 	static final int range = 40;
 	
+	private MainFrame mainFrame;
 	
-	
-	public Hide(String string) {
+	public Hide(String string, MainFrame mainFrame) {
 		super(string);
+		this.mainFrame = mainFrame;
+		
 		ClassLoader classLoader = getClass().getClassLoader();
 		URL clickImg = classLoader.getResource("images/dif_img/check.png");
 		URL hiding = classLoader.getResource("images/dif_img/1234.PNG");

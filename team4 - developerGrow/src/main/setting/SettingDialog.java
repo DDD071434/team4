@@ -103,6 +103,7 @@ public class SettingDialog extends JDialog {
 		JButton closebtn = new JButton();
 		closebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mainFrame.getGameControllerImpl().timeController();
 				dispose();
 			}
 		});
