@@ -64,8 +64,6 @@ public class GameControllerImpl implements GameController {
 	@Override
 	public void stopProjectTime() {
 		
-		System.out.println(mainFrame.getProjectEventImpl().getProjcetTask() != null ? true : false);
-		
 		if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
 			mainFrame.getProjectEventImpl().getProjcetTask().cancel();
 		}
@@ -73,6 +71,10 @@ public class GameControllerImpl implements GameController {
 	
 	@Override
 	public void runProjectTime() {
+		if (mainFrame.getNowRatinglbl().equals("완료!")) {
+			return;
+		}
+		
 		if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
 			mainFrame.getProjectEventImpl().projectTimeControll(
 					mainFrame.getProjectTime());
