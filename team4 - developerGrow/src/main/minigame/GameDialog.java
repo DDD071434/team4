@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import main.MainFrame;
 import main.minigame.different.BulletGame;
 import main.minigame.different.Hide;
 import main.minigame.different.ToryMain;
@@ -17,7 +18,7 @@ import main.minigame.du.dugame;
 public class GameDialog extends JDialog {
 	int score;
 	
-	public GameDialog(int x, int y) {
+	public GameDialog(int x, int y, MainFrame mainFrame) {
 		
 		ClassLoader classloader = getClass().getClassLoader();
 		
@@ -42,7 +43,7 @@ public class GameDialog extends JDialog {
 		firstGameBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dugame dugame = new dugame("");
+				dugame dugame = new dugame("", mainFrame);
 				dispose();
 				dugame.showGUI();
 			}
@@ -64,7 +65,7 @@ public class GameDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ToryMain torymain = new ToryMain("");
+				ToryMain torymain = new ToryMain("", mainFrame);
 				
 				dispose();
 				torymain.showGUI();			
@@ -91,7 +92,7 @@ public class GameDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Hide hide = new Hide("");
+				Hide hide = new Hide("", mainFrame);
 				dispose();
 				hide.showGUI();
 			}
@@ -117,7 +118,7 @@ public class GameDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BulletGame bulletGame = new BulletGame(GameDialog.this);
+				BulletGame bulletGame = new BulletGame(GameDialog.this, mainFrame);
 				dispose();
 				bulletGame.setVisible(true);
 				System.out.println(score);

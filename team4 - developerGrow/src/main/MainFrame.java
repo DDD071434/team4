@@ -71,6 +71,7 @@ public class MainFrame extends JFrame {
 	private JLabel projectHour;
 	private JLabel projectMinute;
 	private int nowProjectId = 0;
+	private int projectTime;
 	
 	// 정보
 	private JLabel levellbl;
@@ -300,6 +301,9 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RankingDialog rankingFrame = new RankingDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
 				gameControllerImpl.getTimerTask().cancel();
+				if (projectEventImpl.getProjcetTask() != null) {
+					projectEventImpl.getProjcetTask().cancel();
+				}
 				rankingFrame.showGUI();
 			}
 		});
@@ -316,8 +320,10 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SettingDialog settingFrame = new SettingDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
+				gameControllerImpl.getTimerTask().cancel();
 				settingFrame.showGUI();
 				if (settingFrame.getLoginFrame()) {
+					gameControllerImpl.getTimerTask().cancel();
 					new LoginFrame();
 					dispose();
 				}
@@ -338,6 +344,7 @@ public class MainFrame extends JFrame {
 					storeFrame = new StoreDialog(MainFrame.this);
 				}
 				storeFrame.setBounds(MainFrame.this.getX() + 7, MainFrame.this.getY() + 30, 1185, 762);
+				gameControllerImpl.getTimerTask().cancel();
 				storeFrame.showGUI();
 			}
 		});
@@ -352,7 +359,8 @@ public class MainFrame extends JFrame {
 		gamebtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameDialog gameDialog = new GameDialog(MainFrame.this.getX(), MainFrame.this.getY());
+				GameDialog gameDialog = new GameDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
+				gameControllerImpl.getTimerTask().cancel();
 				gameDialog.showGUI();
 			}
 		});
@@ -369,6 +377,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				projectFrame = new ProjectDialog(MainFrame.this);
 				projectFrame.setBounds(MainFrame.this.getX() + 7, MainFrame.this.getY() + 30, 1185, 762);
+				gameControllerImpl.getTimerTask().cancel();
 				projectFrame.showGUI();
 			}
 		});
@@ -664,5 +673,13 @@ public class MainFrame extends JFrame {
 
 	public GameControllerImpl getGameControllerImpl() {
 		return gameControllerImpl;
+	}
+
+	public int getProjectTime() {
+		return projectTime;
+	}
+
+	public void setProjectTime(int projectTime) {
+		this.projectTime = projectTime;
 	}
 }

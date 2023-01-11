@@ -14,6 +14,7 @@ public class ProjectEventImpl implements ProjectEvent {
 	private int hours;
 	private double rate;
 	private Timer projectTimer;
+	private TimerTask projcetTask;
 	
 	public ProjectEventImpl(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -35,7 +36,7 @@ public class ProjectEventImpl implements ProjectEvent {
 		rate = Double.valueOf(mainFrame.getNowRatinglbl().getText());
 		
 		projectTimer = new Timer();
-	    TimerTask projcetTask = new TimerTask() {
+	    projcetTask = new TimerTask() {
 			@Override
 			public void run() {
 				
@@ -69,5 +70,9 @@ public class ProjectEventImpl implements ProjectEvent {
 
 	public Timer getProjectTimer() {
 		return projectTimer;
+	}
+
+	public TimerTask getProjcetTask() {
+		return projcetTask;
 	}
 }

@@ -90,6 +90,10 @@ public class RankingDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getGameControllerImpl().timeController();
+				if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
+					mainFrame.getProjectEventImpl().projectTimeControll(
+							mainFrame.getProjectTime());
+				}
 				dispose();
 			}
 		});

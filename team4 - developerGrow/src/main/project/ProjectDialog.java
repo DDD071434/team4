@@ -31,7 +31,6 @@ public class ProjectDialog extends JDialog {
 	private ProjectPanel[] pjs;
 	private List<Project> projectList;
 	private List<UserProject> userProjectList;
-	
 
 	public ProjectDialog(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -82,6 +81,7 @@ public class ProjectDialog extends JDialog {
 				project.getSelectablepnl().setVisible(false);
 				project.setProceeding(true);
 				project.getProceedingpnl().setVisible(true);
+				
 			}
 			pjs[i] = project;
 		}
@@ -91,7 +91,7 @@ public class ProjectDialog extends JDialog {
 			pjs[lastCompletet + 1].setSelectable(true);
 		} else if ((lastProceeding == -1) && (lastCompletet == -1)) {
 			pjs[0].setSelectable(true);	
-			pjs[0].getSelectablepnl().setVisible(false);			
+			pjs[0].getSelectablepnl().setVisible(false);
 		}
 		
 		for (int i = 0; i < pjs.length; i++) {

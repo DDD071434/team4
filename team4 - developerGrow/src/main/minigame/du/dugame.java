@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import guiDesign.Methods;
+import main.MainFrame;
 
 public class dugame extends JFrame implements ActionListener, Runnable {
 //   ImageIcon ii = new ImageIcon("character.gif");
@@ -49,9 +50,11 @@ public class dugame extends JFrame implements ActionListener, Runnable {
 	private JLabel cusorimage;
 	private boolean go;
 	private int touch;
+	private MainFrame mainFrame;
 
-	public dugame(String title) {
+	public dugame(String title, MainFrame mainFrame) {
 		super(title);
+		this.mainFrame = mainFrame;
 		this.init();
 		this.start();
 		super.setBounds(200, 100, 1000, 800);
@@ -105,7 +108,6 @@ public class dugame extends JFrame implements ActionListener, Runnable {
 	}
 
 	public void start() {
-//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		start.addActionListener(this);
 		end.addActionListener(this);
 		for (int i = 0; i < 9; ++i) {
@@ -123,6 +125,7 @@ public class dugame extends JFrame implements ActionListener, Runnable {
 			on_button();
 			random(0);
 		} else if (e.getSource() == end) {
+			mainFrame.getGameControllerImpl().timeController();
 			dispose();
 		}
 		for (int i = 0; i < 9; ++i) {

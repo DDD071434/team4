@@ -16,12 +16,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.MainFrame;
 import main.minigame.GameDialog;
 
 public class BulletGame extends JDialog {
 	private MiniGame miniGame;
 	
-	public BulletGame(GameDialog gameDialog) {
+	public BulletGame(GameDialog gameDialog, MainFrame mainFrame) {
 		setUndecorated(true);
 		setModal(true);
 		setLayout(null);
@@ -39,7 +40,7 @@ public class BulletGame extends JDialog {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				miniGame = new MiniGame(gameDialog, new SubFrame());
+				miniGame = new MiniGame(gameDialog, new SubFrame(), mainFrame);
 				dispose();
 			}
 		});
@@ -78,7 +79,7 @@ class MiniGame extends JDialog {
 	private JLabel lblScore;
 	private int time;
 	
-	public MiniGame(GameDialog gameDialog, SubFrame subFrame) {
+	public MiniGame(GameDialog gameDialog, SubFrame subFrame, MainFrame mainFrame) {
 		setUndecorated(true);
 		setModal(true);
 		setLayout(null);;
@@ -100,7 +101,7 @@ class MiniGame extends JDialog {
 		
 		create(30);
 		
-		mouse(gameDialog, subFrame);
+		mouse(gameDialog, subFrame, mainFrame);
 		
 		setBounds(400, 200, x, y);
 		setVisible(true);
@@ -130,7 +131,7 @@ class MiniGame extends JDialog {
 		lblScore.setText(String.valueOf(score));
 	}
 	
-	public void mouse(GameDialog gameDialog, SubFrame subFrame) {
+	public void mouse(GameDialog gameDialog, SubFrame subFrame, MainFrame mainFrame) {
 		Timer timer=new Timer();
 		TimerTask task=new TimerTask(){
 			@Override
@@ -156,7 +157,7 @@ class MiniGame extends JDialog {
 					timer.cancel(); // 타이머 종료
 					dispose();
 					gameDialog.setScore(score);
-					new BulletScoreDialog(score);
+					new BulletScoreDialog(score, mainFrame);
 					subFrame.dispose();
 				}
 			}
@@ -208,7 +209,7 @@ class MiniGame extends JDialog {
 }
 
 class BulletScoreDialog extends JDialog {
-	public BulletScoreDialog(int score) {
+	public BulletScoreDialog(int score, MainFrame mainFrame) {
 		setUndecorated(true);
 		setModal(true);
 		setLayout(null);;
@@ -234,6 +235,7 @@ class BulletScoreDialog extends JDialog {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainFrame.getGameControllerImpl().timeController();
 				dispose();
 			}
 		});

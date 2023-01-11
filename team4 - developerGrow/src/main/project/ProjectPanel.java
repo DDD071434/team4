@@ -177,11 +177,13 @@ public class ProjectPanel extends JPanel implements MouseListener {
 			String str = mainFrame.getProjectList().get(index).getProjectName();
 			mainFrame.getNowProjectlbl().setText(str);
 			int time = mainFrame.getProjectList().get(index).getTime();
+			mainFrame.setProjectTime(time);
 			mainFrame.getProjectHour().setText(String.valueOf(time));
 			mainFrame.revalidate();
 			mainFrame.repaint();
 			mainFrame.getUserProjectList().get(index).setProceeding(true);
 			mainFrame.getProjectEventImpl().projectTimeControll(time);	
+			mainFrame.getGameControllerImpl().timeController();
 			projectDialog.dispose();
 		}
 	}
@@ -280,5 +282,4 @@ public class ProjectPanel extends JPanel implements MouseListener {
 	public JPanel getSelectablepnl() {
 		return selectablepnl;
 	}
-	
 }
