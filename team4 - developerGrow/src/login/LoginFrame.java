@@ -27,6 +27,7 @@ import guiDesign.MyPassword;
 import guiDesign.MyTextField;
 import login.signUp.SignUpDialog;
 import main.MainFrame;
+import manual.Manual1;
 
 public class LoginFrame extends JFrame {
 
@@ -36,6 +37,7 @@ public class LoginFrame extends JFrame {
 	private MyPassword passwordField;
 	private JLabel characterlbl;
 	private static Clip clip;
+	private JButton manualBtn;
 
 	public static void main(String[] args) {
 		new LoginFrame().showGUI();
@@ -103,6 +105,22 @@ public class LoginFrame extends JFrame {
 		characterlbl.setIcon(Methods.convertToIcon(getClass(), "images/character/logincharacter.gif"));
 		characterlbl.setBounds(683, 207, 161, 166);
 		add(characterlbl);
+		
+		manualBtn = new JButton("");
+		manualBtn.setBounds(815, 175, 200, 200);
+		manualBtn.setIcon(Methods.convertToIcon(getClass(), "images/manualBtn_img/manualBtn.png"));
+		manualBtn.setPressedIcon(Methods.convertToIcon(getClass(), "images/manualBtn_img/manualPushBtn.png"));
+		manualBtn.setContentAreaFilled(false);
+		manualBtn.setBorderPainted(false);
+		manualBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Manual1 manual1 = new Manual1(LoginFrame.this.getX(), LoginFrame.this.getY(), LoginFrame.this);
+				manual1.showGUI();
+				dispose();
+			}
+		});
+		getContentPane().add(manualBtn);
 		
 		JLabel backgourndlbl = new JLabel("");
 		backgourndlbl.setIcon(Methods.convertToIcon(getClass(), "images/back_img/LoginBackground.png"));
