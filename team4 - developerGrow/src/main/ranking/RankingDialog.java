@@ -89,6 +89,7 @@ public class RankingDialog extends JDialog {
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainFrame.getGameControllerImpl().timeController();
 				dispose();
 			}
 		});

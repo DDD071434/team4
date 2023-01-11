@@ -19,36 +19,33 @@ public class GameControllerImpl implements GameController {
 	}
 
 	private int minutes = 0;
-
+	private TimerTask timerTask;
+	private Timer currentTime = new Timer();
 	@Override
 	public void timeController() {
+		timerTask = new TimerTask() {
 
-		currentTime = new Timer();
+			@Override
+			public void run() {
+				if (minutes == 1440) {
+					minutes = 0;
+					updateDate();
+					updateTime(minutes);
+				} else {
+					minutes++;
+					updateTime(minutes);
+				}
+
+				if (((minutes % 60) % 10) == 0) {
+					saveUserInfoData();
+					saveUserProjcet();
+					saveRanking();
+				}
+				checkProject();
+			}
+		};
 		currentTime.scheduleAtFixedRate(timerTask, 250, 250);
 	}
-
-	private TimerTask timerTask = new TimerTask() {
-
-		@Override
-		public void run() {
-			if (minutes == 1440) {
-				minutes = 0;
-				updateDate();
-				updateTime(minutes);
-			} else {
-				minutes++;
-				updateTime(minutes);
-			}
-
-			if (((minutes % 60) % 10) == 0) {
-				saveUserInfoData();
-				saveUserProjcet();
-				saveRanking();
-			}
-			checkProject();
-		}
-	};
-	private Timer currentTime;
 
 	private void updateTime(int minutes) {
 
@@ -239,6 +236,8 @@ public class GameControllerImpl implements GameController {
 	public Timer getCurrentTime() {
 		return currentTime;
 	}
-	
-	
+
+	public TimerTask getTimerTask() {
+		return timerTask;
+	}
 }
