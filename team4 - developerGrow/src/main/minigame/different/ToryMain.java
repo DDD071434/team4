@@ -55,7 +55,25 @@ public class ToryMain extends JFrame {
 		left.add(lblNewLabel);
 		getContentPane().add(right);
 		right.setLayout(null);
-
+		
+		JButton btnNewButton = new JButton("");
+		URL btn = classLoader.getResource("images/btn_img/cancelBtnImage.png");
+		URL btnhide = classLoader.getResource("images/btn_img/cancelPushBtnImage.png");
+		btnNewButton.setIcon(new ImageIcon(btn));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setPressedIcon(new ImageIcon(btnhide));
+		btnNewButton.setOpaque(false);
+		btnNewButton.setBackground(new Color(255, 0, 0, 0));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(320, 10, 138, 36);
+		left.add(btnNewButton);
+		getContentPane().add(right);
+		right.setLayout(null);
+		
 		JLabel rightimg = new JLabel("");
 		rightimg.setBounds(0, 10, 458, 620);
 		rightimg.setIcon(new ImageIcon(toryimg2));

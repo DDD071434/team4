@@ -41,7 +41,24 @@ public class Hide extends JFrame {
 		leftimg.setBounds(29, 22, 631, 883);
 		center.add(leftimg);
 		
-
+		JButton btnNewButton = new JButton();
+		URL btn = classLoader.getResource("images/btn_img/cancelBtnImage.png");
+		URL btnhide = classLoader.getResource("images/btn_img/cancelPushBtnImage.png");
+		btnNewButton.setIcon(new ImageIcon(btn));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setPressedIcon(new ImageIcon(btnhide));
+		btnNewButton.setOpaque(false);
+		btnNewButton.setBackground(new Color(255, 0, 0, 0));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(227, 10, 177, 24);
+		getContentPane().add(btnNewButton);
+		setBounds(500, 0, 700, 1000);
+		setResizable(false);
+		setVisible(true);
 
 		getContentPane().add(center);
 		setBounds(500, 0, 700, 1000);
