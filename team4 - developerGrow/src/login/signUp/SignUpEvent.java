@@ -24,8 +24,6 @@ public class SignUpEvent {
 	private JLabel lblPwCheck;
 	private JLabel lblPwPatternCheck;
 	private JLabel lblNickCheck;
-	
-
 
 	public SignUpEvent(SignUpDialog signUpDialog) {
 		this.signUpDialog = signUpDialog;

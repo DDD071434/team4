@@ -39,10 +39,9 @@ public class SignUpDialog extends JDialog  {
 		setBounds(x + 8, y + 30, 984, 463);
 		setUndecorated(true);
 		setModal(true);
-		setBackground(new Color (255, 0, 0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color (255, 0, 0, 0));
+		panel.setOpaque(false);
 		panel.setBounds(0, 0, 984, 463);
 		panel.setLayout(null);
 		getContentPane().add(panel);
@@ -103,21 +102,25 @@ public class SignUpDialog extends JDialog  {
 		panel.add(lblIdCheck);
 		
 		idField = new JTextField();
+		idField.setFont(new Font("휴먼편지체", Font.PLAIN, 15));
 		idField.setBounds(436, 102, 116, 28);
 		panel.add(idField);
 		idField.setColumns(10);
 		
 		nicknameField = new JTextField();
+		nicknameField.setFont(new Font("휴먼편지체", Font.PLAIN, 15));
 		nicknameField.setColumns(10);
 		nicknameField.setBounds(436, 169, 116, 28);
 		panel.add(nicknameField);
 		
 		passwordField = new JTextField();
+		passwordField.setFont(new Font("휴먼편지체", Font.PLAIN, 15));
 		passwordField.setColumns(10);
 		passwordField.setBounds(436, 255, 116, 28);
 		panel.add(passwordField);
 		
 		passwordChkField = new JTextField();
+		passwordChkField.setFont(new Font("휴먼편지체", Font.PLAIN, 15));
 		passwordChkField.setColumns(10);
 		passwordChkField.setBounds(436, 346, 116, 28);
 		panel.add(passwordChkField);
@@ -132,7 +135,7 @@ public class SignUpDialog extends JDialog  {
 		lblPwCheck.setForeground(Color.RED);
 		lblPwCheck.setBounds(564, 346, 166, 28);
 		panel.add(lblPwCheck);
-			
+		
 		btnIdCheck.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -149,7 +152,7 @@ public class SignUpDialog extends JDialog  {
 				repaint();
 			}
 		});
-		
+	
 		passwordChkField.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
