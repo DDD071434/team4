@@ -51,7 +51,7 @@ public class ProjectEventImpl implements ProjectEvent {
 				updateTime(minutes, hours, rate);
 			}
 	    };
-		projectTimer.scheduleAtFixedRate(projcetTask, 1, 20);
+		projectTimer.scheduleAtFixedRate(projcetTask, 1, 250);
 	}
 	
 	private void updateTime(int minutes, int hours, double rate) {

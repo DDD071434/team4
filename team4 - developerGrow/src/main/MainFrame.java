@@ -42,6 +42,9 @@ import progressbar.ProgressbarEvent;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
+	
+	// 게임속도
+	int gameSpeed = 1;
 
 	// 메인페널
 	private ImagePanel Mainpnl;
@@ -117,6 +120,35 @@ public class MainFrame extends JFrame {
 		Mainpnl.setLayout(null);
 
 		activeEventImpl.getCharacters().defaultCharacter();
+		
+		JButton btnSpeed = new JButton(Methods.convertToResizeIcon(getClass(), "images/btn_img/speed1.png", 60, 50));
+		btnSpeed.setForeground(Color.RED);
+		btnSpeed.setBackground(new Color(0, 0, 0, 0));
+		btnSpeed.setOpaque(false);
+		btnSpeed.setBorderPainted(false);
+		btnSpeed.setBounds(290, 10, 60, 50);
+		Mainpnl.add(btnSpeed);
+		btnSpeed.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (gameSpeed == 5) {
+					gameSpeed = 1;
+				} else {
+					gameSpeed++;
+				}
+				if (gameSpeed == 1) {
+					btnSpeed.setIcon(Methods.convertToResizeIcon(getClass(), "images/btn_img/speed1.png", 60, 50));
+				} else if (gameSpeed == 2) {
+					btnSpeed.setIcon(Methods.convertToResizeIcon(getClass(), "images/btn_img/speed2.png", 60, 50));
+				} else if (gameSpeed == 3) {
+					btnSpeed.setIcon(Methods.convertToResizeIcon(getClass(), "images/btn_img/speed3.png", 60, 50));
+				} else if (gameSpeed == 4) {
+					btnSpeed.setIcon(Methods.convertToResizeIcon(getClass(), "images/btn_img/speed4.png", 60, 50));
+				} else if (gameSpeed == 5) {
+					btnSpeed.setIcon(Methods.convertToResizeIcon(getClass(), "images/btn_img/speed5.png", 60, 50));
+				}
+			}
+		});
 		
 		ImageIcon sound = Methods.convertToResizeIcon(getClass(), "images/btn_img/sound.png", 50, 50);
 		ImageIcon mute = Methods.convertToResizeIcon(getClass(), "images/btn_img/mute.png", 50, 50);
