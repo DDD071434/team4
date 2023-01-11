@@ -16,6 +16,7 @@ public class ProgressbarEvent {
 	private int hp;
 	private int stress;
 	private int health;
+	private TimerTask hpTask;
 
 	public ProgressbarEvent(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -28,22 +29,20 @@ public class ProgressbarEvent {
 		int computer = mainFrame.getUserSkillList().get(2).getSkillLevel();
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
-				
-		int index = -1;
-		int project = 0;
+					
+		int speedHp = 20000 + (level * 500) + (energydrink * 100) + (bed * 100);
+		int speedStress = 8000 + (level * 500) + (energydrink * 100) + (bed * 100);
+		int speedHealth = 10000 + (level * 500) + (energydrink * 100) + (bed * 100);
 		
-		for (int i = 0; i < mainFrame.getUserProjectList().size(); i++) {
-			if (mainFrame.getUserProjectList().get(i).isProceeding() && !mainFrame.getUserProjectList().get(i).isComplete()) {
-				index =  i;
-			}
+		if (speedHp < 250) {
+			speedHp = 250;
 		}
-		if (index != -1) {
-			project = mainFrame.getUserProjectList().get(index).getProjectId();
+		if (speedStress < 250) {
+			speedStress = 250;
 		}
-		
-		int speedHp = 1000 + (level *1000) + (energydrink * 50) - (project * 500);
-		int speedStress = 250 + (level * 1000) + (elecciga * 50) - (project * 500);
-		int speedHealth = 500 + (level * 1000) + (bed * 50) - (project * 500);
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarDecreas(speedHp);
 		stressbarIncrease(speedStress);
@@ -57,22 +56,20 @@ public class ProgressbarEvent {
 		int computer = mainFrame.getUserSkillList().get(2).getSkillLevel();
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
-				
-		int index = -1;
-		int project = 0;
 		
-		for (int i = 0; i < mainFrame.getUserProjectList().size(); i++) {
-			if (mainFrame.getUserProjectList().get(i).isProceeding() && !mainFrame.getUserProjectList().get(i).isComplete()) {
-				index =  i;
-			}
-		}
-		if (index != -1) {
-			project = mainFrame.getUserProjectList().get(index).getProjectId();
-		}
+		int speedHp = 15000 + (level * 500) + (energydrink * 100) + (bed * 100) + (elecciga * 150);
+		int speedStress = 6000 - (level * 500) - (energydrink * 100) - (bed * 100) - (elecciga * 300);
+		int speedHealth = 7500 + (level * 500) + (energydrink * 100) + (bed * 100) + (elecciga * 150);
 		
-		int speedHp = 1000 + (level *1000) + (energydrink * 50) - (project * 500) - 500;
-		int speedStress = (3000 + (250 - (level * 500) - (elecciga * 100) + (project * 500)));
-		int speedHealth = 500 + (level * 1000) + (bed * 50) - (project * 500) - 500;;
+		if (speedHp < 250) {
+			speedHp = 250;
+		}
+		if (speedStress < 250) {
+			speedStress = 250;
+		}
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarDecreas(speedHp);
 		stressbarDecreas(speedStress);
@@ -86,10 +83,20 @@ public class ProgressbarEvent {
 		int computer = mainFrame.getUserSkillList().get(2).getSkillLevel();
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
-						
-		int speedHp = 10000 + (level *1000) + (energydrink * 50);
-		int speedStress = 2500 + (level * 1000) + (elecciga * 50);
-		int speedHealth = 5000 + (level * 1000) + (bed * 50);
+								
+		int speedHp = 10000 + (level * 500) + (energydrink * 100) + (bed * 100);
+		int speedStress = 4000 + (level * 500) + (energydrink * 100) + (bed * 100);
+		int speedHealth = 5000 + (level * 500) + (energydrink * 100) + (bed * 100);
+		
+		if (speedHp < 250) {
+			speedHp = 250;
+		}
+		if (speedStress < 250) {
+			speedStress = 250;
+		}
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarDecreas(speedHp);
 		stressbarIncrease(speedStress);
@@ -104,9 +111,19 @@ public class ProgressbarEvent {
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
 					
-		int speedHp = 1500 + (level *1000) + (energydrink * 50);
-		int speedStress = (3000 + (250 - (level * 1000) - (elecciga * 50)))/3;
-		int speedHealth = 1000 + (level * 1000) + (bed * 50);
+		int speedHp = 15000 + (level * 500) + (energydrink * 100) + (bed * 100) + (elecciga * 100) + (computer * 300);
+		int speedStress = 6000 - (level * 500) - (energydrink * 100) - (bed * 100) - (elecciga * 100) - (computer * 300);
+		int speedHealth = 7500 + (level * 500) + (energydrink * 100) + (bed * 100) + (elecciga * 100) + (computer * 300);
+		
+		if (speedHp < 250) {
+			speedHp = 250;
+		}
+		if (speedStress < 250) {
+			speedStress = 250;
+		}
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarDecreas(speedHp);
 		stressbarDecreas(speedStress);
@@ -121,9 +138,19 @@ public class ProgressbarEvent {
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
 					
-		int speedHp = 1500 + (level *1000) + (energydrink * 50);
-		int speedStress = (3000 + (250 - (level * 1000) - (elecciga * 50)))/3;
-		int speedHealth = 5000 - ((level * 500) + (bed * 800));
+		int speedHp = 10000 - (level * 500) - (bed * 300);
+		int speedStress = 4000 - (level * 500) - (bed * 300);
+		int speedHealth = 5000 - (level * 500) - (bed * 300);
+		
+		if (speedHp < 250) {
+			speedHp = 250;
+		}
+		if (speedStress < 250) {
+			speedStress = 250;
+		}
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarIncrease(speedHp);
 		stressbarDecreas(speedStress);
@@ -138,9 +165,19 @@ public class ProgressbarEvent {
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
 					
-		int speedHp = 1500 + (level *1000) + (energydrink * 50);
-		int speedStress = (3000 + (250 - (level * 1000) - (elecciga * 50)))/3;
-		int speedHealth = 5000 - ((level * 500) + (bed * 800));
+		int speedHp = 10000 - (level * 500) - (energydrink * 100) - (bed * 100);
+		int speedStress = 8000 - (level * 500) - (energydrink * 100) - (bed * 100);
+		int speedHealth = 5000 - (level * 500) - (energydrink * 100) - (bed * 100);
+		
+		if (speedHp < 250) {
+			speedHp = 250;
+		}
+		if (speedStress < 250) {
+			speedStress = 250;
+		}
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarIncrease(speedHp);
 		stressbarDecreas(speedStress);
@@ -155,9 +192,19 @@ public class ProgressbarEvent {
 		int elecciga = mainFrame.getUserSkillList().get(3).getSkillLevel();
 		int mac = mainFrame.getUserSkillList().get(4).getSkillLevel();
 						
-		int speedHp = 10000 + (level *1000) + (energydrink * 50);
-		int speedStress = 2500 + (level * 1000) + (elecciga * 50);
-		int speedHealth = 5000 + (level * 1000) + (bed * 50);
+		int speedHp = 15000 + (level * 500) + (energydrink * 100) + (bed * 100) + (mac * 150);
+		int speedStress = 6000 - (level * 500) - (energydrink * 100) - (bed * 100) - (mac * 300);
+		int speedHealth = 7500 + (level * 500) + (energydrink * 100) + (bed * 100) + (mac * 150);
+		
+		if (speedHp < 250) {
+			speedHp = 250;
+		}
+		if (speedStress < 250) {
+			speedStress = 250;
+		}
+		if (speedHealth < 250) {
+			speedHealth = 250;
+		}
 		
 		hpbarDecreas(speedHp);
 		stressbarIncrease(speedStress);
@@ -171,7 +218,7 @@ public class ProgressbarEvent {
 		}
 		timeHp = new Timer();
 		hp = mainFrame.getHpbar().getValue();
-		TimerTask hpTask = new TimerTask() {
+		hpTask = new TimerTask() {
 			@Override
 			public void run() {
 				if (hp <= 0) {
