@@ -60,6 +60,24 @@ public class GameControllerImpl implements GameController {
 		day++;
 		mainFrame.getDatelbl().setText(String.format("%02d", day) + "일차");
 	}
+	
+	@Override
+	public void stopProjectTime() {
+		
+		System.out.println(mainFrame.getProjectEventImpl().getProjcetTask() != null ? true : false);
+		
+		if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
+			mainFrame.getProjectEventImpl().getProjcetTask().cancel();
+		}
+	}
+	
+	@Override
+	public void runProjectTime() {
+		if (mainFrame.getProjectEventImpl().getProjcetTask() != null) {
+			mainFrame.getProjectEventImpl().projectTimeControll(
+					mainFrame.getProjectTime());
+		}
+	}
 
 	@Override
 	public void readyGame(int userId) {

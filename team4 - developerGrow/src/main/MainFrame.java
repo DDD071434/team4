@@ -301,9 +301,8 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RankingDialog rankingFrame = new RankingDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
 				gameControllerImpl.getTimerTask().cancel();
-				if (projectEventImpl.getProjcetTask() != null) {
-					projectEventImpl.getProjcetTask().cancel();
-				}
+				gameControllerImpl.stopProjectTime();
+				
 				rankingFrame.showGUI();
 			}
 		});
@@ -321,9 +320,11 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SettingDialog settingFrame = new SettingDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
 				gameControllerImpl.getTimerTask().cancel();
+				gameControllerImpl.stopProjectTime();
 				settingFrame.showGUI();
 				if (settingFrame.getLoginFrame()) {
 					gameControllerImpl.getTimerTask().cancel();
+					gameControllerImpl.stopProjectTime();
 					new LoginFrame();
 					dispose();
 				}
@@ -345,6 +346,7 @@ public class MainFrame extends JFrame {
 				}
 				storeFrame.setBounds(MainFrame.this.getX() + 7, MainFrame.this.getY() + 30, 1185, 762);
 				gameControllerImpl.getTimerTask().cancel();
+				gameControllerImpl.stopProjectTime();
 				storeFrame.showGUI();
 			}
 		});
@@ -361,6 +363,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GameDialog gameDialog = new GameDialog(MainFrame.this.getX(), MainFrame.this.getY(), MainFrame.this);
 				gameControllerImpl.getTimerTask().cancel();
+				gameControllerImpl.stopProjectTime();
 				gameDialog.showGUI();
 			}
 		});
@@ -378,6 +381,7 @@ public class MainFrame extends JFrame {
 				projectFrame = new ProjectDialog(MainFrame.this);
 				projectFrame.setBounds(MainFrame.this.getX() + 7, MainFrame.this.getY() + 30, 1185, 762);
 				gameControllerImpl.getTimerTask().cancel();
+				gameControllerImpl.stopProjectTime();
 				projectFrame.showGUI();
 			}
 		});

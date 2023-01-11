@@ -126,6 +126,7 @@ public class dugame extends JFrame implements ActionListener, Runnable {
 			random(0);
 		} else if (e.getSource() == end) {
 			mainFrame.getGameControllerImpl().timeController();
+			mainFrame.getGameControllerImpl().runProjectTime();
 			dispose();
 		}
 		for (int i = 0; i < 9; ++i) {

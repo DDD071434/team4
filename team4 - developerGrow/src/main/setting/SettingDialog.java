@@ -104,6 +104,7 @@ public class SettingDialog extends JDialog {
 		closebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getGameControllerImpl().timeController();
+				mainFrame.getGameControllerImpl().runProjectTime();
 				dispose();
 			}
 		});

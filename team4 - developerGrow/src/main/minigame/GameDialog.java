@@ -142,6 +142,8 @@ public class GameDialog extends JDialog {
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainFrame.getGameControllerImpl().timeController();
+				mainFrame.getGameControllerImpl().runProjectTime();
 				dispose();
 			}
 		});

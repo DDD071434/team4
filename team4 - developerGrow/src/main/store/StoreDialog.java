@@ -82,7 +82,9 @@ public class StoreDialog extends JDialog {
 				for (int i = 0; i < skills.length; i++) {
 					mainFrame.getUserSkillList().get(i).setSkillLevel(skills[i].getLevel());
 				}
-
+				
+				mainFrame.getGameControllerImpl().timeController();
+				mainFrame.getGameControllerImpl().runProjectTime();
 				storeEventImpl.updateLevelToDB();
 				dispose();
 			}

@@ -69,6 +69,8 @@ public class ToryMain extends JFrame {
 		btnNewButton.setBackground(new Color(255, 0, 0, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				mainFrame.getGameControllerImpl().timeController();
+				mainFrame.getGameControllerImpl().runProjectTime();
 				dispose();
 			}
 		});

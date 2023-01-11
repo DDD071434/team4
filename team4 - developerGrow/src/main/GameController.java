@@ -6,4 +6,6 @@ public interface GameController {
 	void readyGame(int userId);
 	void applyDB();
 	void saveUserInfoData();
+	void stopProjectTime();
+	void runProjectTime();
 }

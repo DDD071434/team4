@@ -236,6 +236,7 @@ class BulletScoreDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getGameControllerImpl().timeController();
+				mainFrame.getGameControllerImpl().runProjectTime();
 				dispose();
 			}
 		});
